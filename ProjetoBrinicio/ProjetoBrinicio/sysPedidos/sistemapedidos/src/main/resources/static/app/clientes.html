@@ -1,0 +1,151 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Listagem de produtos</title>
+    </head>
+    <style>
+ body{
+    font-family: Arial, Arial, Helvetica, 
+    sans-serifs;
+}
+
+      header{
+        background-color: #000000;
+        color:#861313;
+margin-bottom: 0px;
+      }
+
+
+    </style>
+    <body>
+        <h1>Sistema de Pedidos</h1>        
+        <div>
+            <p>Listagem de clientes</p>
+            <form>
+                <label>ID: </label>
+                <input type="text" id="tx_id" readonly="readonly"/>
+                <br>
+                <label> NOME: </label>
+                <input type="text" id="tx_nome"/>
+                <br>
+                <label> CPF </label>
+                <input type="text"  name="tx_cpfS"/>
+                <br>
+                <label> CNPJ</label>
+                <input type="text" name="tx_cnpj"/>
+                <br>
+                <label> TELEFONE</label>
+                <input type="text" name="tx_telefone"/>
+                <br>
+                <label> ENDEREÇO</label>
+                <input type="text" name="tx_endereco"/>
+                <br>
+                <label> BAIRRO</label>
+                <input type="text" name="tx_bairro"/>
+                <br>
+                <label> CEP</label>
+                <input type="text" name="tx_cep"/>
+                <br>
+                <label> EMAIL</label>
+                <input type="text" name="tx_email"/>
+                <br>
+                <label> INFORMAÇÕES</label>
+                <input type="text" name="tx_informacoes"/>
+                <br>
+                <button type="button" onclick="criar()">Criar</button>
+                <button type="button" onclick="alterar()">Alterar</button>
+                <button type="button" onclick="limpar()">Limpar</button>
+                <button type="button" onclick="carregar()">Listar</button>
+            </form>
+            <table border="1" id="listagem"></table>
+            <form class="row g-4">
+                <div class="col-auto">
+                  <label for="staticEmail2" class="visually-hidden">EMAIL</label>
+                  <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@example.com">
+                </div>
+        </div>
+    </body>
+
+<script>
+    function alterar(){
+       console.log("Alterar cliente!!!!");
+       var xhttp = new XMLHttpRequest();
+       xhttp.onreadystatechange = function(){
+          if(this.readyState == 4 && this.status==200){
+                alert("Cliente alterado com sucesso");
+                carregar();
+          }}
+       xhttp.open("PUT","/cliente/" + document.getElementById("tx_id").value);
+       xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+       xhttp.send(JSON.stringify({id:document.getElementById("tx_id").value, nome: document.getElementById("tx_nome").value, 
+       cpf:document.getElementsByName("tx_cpf").value, cnpj:document.getElementsByName("tx_cnpj").value,
+       telefone:document.getElementByName("tx_telefone").value, endereço:document.getElementByName("tx_endereco").value,
+       bairro:document.getElementByName("tx_bairro").value, cep:document.getElementByName("tx_cep").value,
+       email:document.getElementByName("tx_email").value, informações:document.getElementByName("tx_informacoes").value}));
+    }
+
+    function excluir(id_cliente){
+       console.log("excluir produto!!!!");
+       var xhttp = new XMLHttpRequest();
+       xhttp.onreadystatechange = function(){
+          if(this.readyState == 4 && this.status==200){
+                alert("Produto excluído com sucesso");
+                carregar();
+          }}
+       xhttp.open("DELETE","/produto/" + id_cliente);
+       xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+       xhttp.send();
+    }
+    function criar(){
+       console.log("Criar novo cliente!!!!");
+       var xhttp = new XMLHttpRequest();
+       xhttp.onreadystatechange = function(){
+          if(this.readyState == 4 && this.status==200){
+                alert("Produto criado com sucesso");
+                carregar();
+          }}
+       xhttp.open("POST","/produto");
+       xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+       xhttp.send(JSON.stringify({id:null, nome: document.getElementById("tx_nome").value,
+       cpf:document.getElementByName("tx_cpf").value, cnpj:document.getElementByName("tx_cnpj").value,
+       telefone:document.getElementByName("tx_telefone").value, endereço:document.getElementByName("tx_endereco").value,
+       bairro:document.getElementByName("tx_bairro").value, cep:document.getElementByName("tx_cep").value,
+       email:document.getElementByName("tx_email").value, informações:document.getElementByName("tx_informacoes").value}));
+    }
+
+    function preencher (id_produto, nome_produto){
+        console.log(id_produto, nome_produto);
+        document.getElementById("tx_id").value = id_cliente;
+        document.getElementById("tx_nome").value = nome_cliente;
+        document.getElementByName("tx_cpf").value = cpf_cliente;
+        document.getElementByName("tx_cnpj").value = cnpj_cliente;
+        document.getElementByName("tx_telefone").value = telefone_cliente;
+        document.getElementByName("tx_endereco").value = endereço_cliente;
+        document.getElementByName("tx_bairro").value = bairro_cliente;
+        document.getElementByName("tx_cep").value = cep_cliente;
+        document.getElementByName("tx_email").value = email_cliente;
+        document.getElementByName("tx_informacoes").value = cnpj_cliente;
+    }
+    function carregar(){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){ 
+            var dados = JSON.parse(this.responseText); 
+            var conteudo ="<tr> <th>ID</th> <th>Nome</th> <th>CPF</th> <th>CNPJ</th> <th>TELEFONE</th> <th>ENDEREÇO</th> <th>BAIRRO</th> <th>CEP</th> <th>EMAIL</th> <th>INFORMAÇÕES</th>  <th>Ações</th> </tr>";        
+            for(var produto of dados){
+                conteudo += "<tr> <td>" + cliente.id + " </td> <td>"+ cliente.nome + "</td>  <td>" + cliente.cpf + " </td> <td>"+ cliente.cnpj + "</td> <td>" + cliente.telefone + " </td> <td>"+ cliente.endereço + "</td> <td>"+ cliente.bairro + "</td> <td>"+ cliente.cep + "</td> <td>"+ cliente.email + "</td><td>"+ cliente.informações + "</td>";
+                conteudo += "<td> <button type='button' onclick=preencher('"+ cliente.id +"','"+ cliente.nome +"','"+ cliente.cpf +"','"+ cliente.cnpj +"','"+ cliente.telefone +"','"+ cliente.endereço +"','"+ cliente.bairro +"','"+ cliente.cep +"','"+ cliente.email +"','"+ cliente.informações +"')>Alterar</button>  ";    
+                conteudo += "<button type='button' onclick='excluir("+ cliente.id +",'"+ cliente.nome +"','"+ cliente.cpf +"','"+ cliente.cnpj +"','"+ cliente.telefone +"','"+ cliente.endereço +"','"+ cliente.bairro +"','"+ cliente.cep +"','"+ cliente.email +"','"+ cliente.informações +"')'>Excluir</button></td></tr>";
+            }
+            document.getElementById("listagem").innerHTML = conteudo;
+           limpar();
+            console.log(this.responseText);
+            console.log(dados);  }
+        };
+        xhttp.open("GET","/cliente");
+        xhttp.send();
+    }
+
+</script>
+
+</html>
