@@ -22,6 +22,12 @@
             var dados = JSON.parse(this.responseText);
             console.log(dados);
             var conteudo ="<tr> <th>ID</th> <th>Nome</th> <th>Ações</th> </tr>";    
+        for(var municipios of dados){
+        conteudo += "<tr><td>"+ municipio.id +"</td><td></td><td></td></tr>";
+
+            }
+
+            document.getElementById("listagem").innerHTML = conteudo;
         }
         };
         xhttp.open("GET","/municipios");
