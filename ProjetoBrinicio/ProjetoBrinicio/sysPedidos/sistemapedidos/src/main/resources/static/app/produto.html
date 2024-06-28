@@ -19,7 +19,7 @@ margin-bottom: 0px;
     <body>
         <h1>Sistema de Pedidos</h1>        
         <div>
-            <p>Listagem de produtos</p>
+            <p>Listagem de Produtos</p>
             <form>
                 <label>ID: </label>
                 <input type="text" id="tx_id" readonly="readonly"/>
@@ -28,10 +28,10 @@ margin-bottom: 0px;
                 <input type="text" id="tx_nome"/>
                 <br>
                 <label> QUANTIDADE DE ESTOQUE </label>
-                <input type="number"  name="nu_quantidade_estoque"/>
+                <input type="number"  id="nu_quantidade_estoque"/>
                 <br>
                 <label> PREÇO ATUAL</label>
-                <input type="number" name="nu_preco_atual"/>
+                <input type="number" id="nu_preco_atual"/>
                 <br>
                 <button type="button" onclick="criar()">Criar Produtos</button>
                 <button type="button" onclick="alterar()">Alterar Produtos</button>
@@ -54,7 +54,7 @@ margin-bottom: 0px;
        xhttp.open("PUT","/produto/" + document.getElementById("tx_id").value);
        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
        xhttp.send(JSON.stringify({id:document.getElementById("tx_id").value, nome: document.getElementById("tx_nome").value, 
-       quantidade_de_estoque:document.getElementByName("nu_quantidade_estoque").value, preço_atual:document.getElementByName("nu_preco_atual").value}));
+       quantidade_de_estoque:document.getElementById("nu_quantidade_estoque").value, preço_atual:document.getElementById("nu_preco_atual").value}));
     }
 
     function excluir(id_produto){
@@ -80,7 +80,7 @@ margin-bottom: 0px;
        xhttp.open("POST","/produto");
        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
        xhttp.send(JSON.stringify({id:null, nome: document.getElementById("tx_nome").value,
-       quantidade_de_estoque:document.getElementByName("nu_quantidade_estoque").value, preço_atual:document.getElementByName("nu_preco_atual").value}));
+       quantidade_de_estoque:document.getElementById("nu_quantidade_estoque").value, preço_atual:document.getElementById("nu_preco_atual").value}));
     }
 
     function preencher (id_produto, nome_produto,quantidade_estoque,preçoc_atual_produto){

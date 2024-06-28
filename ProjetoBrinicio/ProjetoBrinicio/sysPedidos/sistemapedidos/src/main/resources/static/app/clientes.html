@@ -21,7 +21,7 @@ margin-bottom: 0px;
     <body>
         <h1>Sistema de Pedidos</h1>        
         <div>
-            <p>Listagem de clientes</p>
+            <p>Listagem de Clientes</p>
             <form>
                 <label>ID: </label>
                 <input type="text" id="tx_id" readonly="readonly"/>
@@ -122,8 +122,8 @@ margin-bottom: 0px;
        cpf:document.getElementById("tx_cpf").value, cnpj:document.getElementById("tx_cnpj").value,
        telefone:document.getElementById("tx_telefone").value, endereço:document.getElementById("tx_endereco").value,
        bairro:document.getElementById("tx_bairro").value, cep:document.getElementById("tx_cep").value,
-       email:document.getElementById("tx_email").value, informações:document.getElementById("tx_informacoes").value,entrega:document.getElementByName("bo_ativo").value
-    ,municipio:document.getElementByName("id_municipio").value}));
+       email:document.getElementById("tx_email").value, informações:document.getElementById("tx_informacoes").value,entrega:document.getElementById("bo_ativo").value
+    ,municipio:document.getElementById("id_municipio").value}));
     }
 
     function preencher (id_cliente, nome_cliente,cpf_cliente,cnpj_cliente,telefone_cliente,endereço_cliente,
@@ -133,16 +133,16 @@ margin-bottom: 0px;
             entrega_cliente,municipio_cliente);
         document.getElementById("tx_id").value = id_cliente;
         document.getElementById("tx_nome").value = nome_cliente;
-        document.getElementByName("tx_cpf").value = cpf_cliente;
-        document.getElementByName("tx_cnpj").value = cnpj_cliente;
-        document.getElementByName("tx_telefone").value = telefone_cliente;
-        document.getElementByName("tx_endereco").value = endereço_cliente;
-        document.getElementByName("tx_bairro").value = bairro_cliente;
-        document.getElementByName("tx_cep").value = cep_cliente;
-        document.getElementByName("tx_email").value = email_cliente;
-        document.getElementByName("tx_informacoes").value = informações_cliente;
-        document.getElementByName("bo_ativo").value = entrega_cliente;
-        document.getElementByName("id_municipio").value = municipio_cliente;
+        document.getElementById("tx_cpf").value = cpf_cliente;
+        document.getElementById("tx_cnpj").value = cnpj_cliente;
+        document.getElementById("tx_telefone").value = telefone_cliente;
+        document.getElementById("tx_endereco").value = endereço_cliente;
+        document.getElementById("tx_bairro").value = bairro_cliente;
+        document.getElementById("tx_cep").value = cep_cliente;
+        document.getElementById("tx_email").value = email_cliente;
+        document.getElementById("tx_informacoes").value = informações_cliente;
+        document.getElementById("bo_ativo").value = entrega_cliente;
+        document.getElementById("id_municipio").value = municipio_cliente;
         
     }
     
