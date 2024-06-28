@@ -87,8 +87,8 @@ margin-bottom: 0px;
         console.log(id_produto, nome_produto,quantidade_estoque,preço_atual_produto);
         document.getElementById("tx_id").value = id_produto;
         document.getElementById("tx_nome").value = nome_produto;
-        document.getElementByName("nu_quantidade_estoque").value = quantidade_estoque_produto;
-        document.getElementByName("nu_preco_atual").value = preço_atual_produto;
+        document.getElementById("nu_quantidade_estoque").value = quantidade_estoque_produto;
+        document.getElementById("nu_preco_atual").value = preço_atual_produto;
     }
     function carregar(){
         var xhttp = new XMLHttpRequest();
